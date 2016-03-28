@@ -39,6 +39,16 @@ Plugin 'Shougo/neocomplete.vim'
 Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
 
+"Syntastic - syntax and error reporting for loads of languages
+Plugin 'scrooloose/syntastic'
+
+"easytags - auto generates ctags files if exuberant ctags is installed
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-easytags'
+
+" Tagbar 
+Plugin 'majutsushi/tagbar'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -62,4 +72,21 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 
 "Point to user defined snippets.  Use comma separated for multiple folders
 let g:neosnippet#snippets_directory='~/.vim/snippets'
+
+
+"Syntasic Recommended settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+"Easytags
+let g:easytags_async = 1
+
+" TagBar short cut
+nmap <F8> :TagbarToggle<CR>
 
