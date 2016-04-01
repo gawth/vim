@@ -15,11 +15,17 @@ syntax enable
 set expandtab
 set shiftwidth=4
 set softtabstop=4
+set tabstop=4
 set autoindent
 
 set showcmd
 let mapleader=","
 
+" Arrow Key Fix 
+" https://github.com/spf13/spf13-vim/issues/780
+if &term[:4] == "xterm" || &term[:5] == 'screen' || &term[:3] == 'rxvt'
+    inoremap <silent> <C-[>OC <RIGHT>
+endif
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -73,19 +79,19 @@ Plugin 'ctrlpvim/ctrlp.vim'
 call vundle#end()            " required
 
 "Switch on neocomplete
+let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#enable_auto_delimiter = 1
+let g:neocomplete#max_list = 15
 
-"Snippet related settings
-"
-"
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
 xmap <C-k> <Plug>(neosnippet_expand_target)
-
-" This is supposed to allow use of tab to move through snippets but doesn't
-" seem to work :-(
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
- \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+inoremap <CR> <CR>
+inoremap <expr> <Esc>   pumvisible() ? "\<C-y>\<Esc>" : "\<Esc>"
+inoremap <expr> <CR>    pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <expr> <TAB>   pumvisible() ? "\<C-y>" : "\<TAB>"
 
 
 "Point to user defined snippets.  Use comma separated for multiple folders
