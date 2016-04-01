@@ -17,6 +17,9 @@ set shiftwidth=4
 set softtabstop=4
 set autoindent
 
+set showcmd
+let mapleader=","
+
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -48,6 +51,19 @@ Plugin 'xolox/vim-easytags'
 
 " Tagbar 
 Plugin 'majutsushi/tagbar'
+
+" Nerdcommenter - for commenting out stuff
+Plugin 'scrooloose/nerdcommenter'
+
+" Autoclose - does what it says on the tin
+Plugin 'vim-scripts/AutoClose'
+
+" Airline - status line on steroids
+Plugin 'vim-airline/vim-airline'
+
+" Easymotion - allows nav around by means of matching word patterns, etc
+Plugin 'easymotion/vim-easymotion'
+
 
 
 " All of your Plugins must be added before the following line
