@@ -65,10 +65,12 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'easymotion/vim-easymotion'
 
 
+Plugin 'ctrlpvim/ctrlp.vim'
+
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
-filetype plugin indent on    " required
 
 "Switch on neocomplete
 let g:neocomplete#enable_at_startup = 1
@@ -106,3 +108,5 @@ let g:easytags_async = 1
 " TagBar short cut
 nmap <F8> :TagbarToggle<CR>
 
+filetype on
+filetype plugin indent on    " required
