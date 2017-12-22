@@ -56,9 +56,19 @@ nmap <F8> :TagbarToggle<CR>
 filetype on
 filetype plugin indent on    " required
 
+"
+" fzf setup
+set rtp+=~/.fzf
+nmap ; :Buffers<CR>
+nmap <Leader>; :Files<CR>
+nmap <Leader>t :Tags<CR>
+
 " List of bundles - by putting these in a func they dont get executed 
 " dont call the function though :-)
 function! _blockcomment()
+git clone git://github.com/tpope/vim-unimpaired.git
+git clone https://github.com/junegunn/fzf.vim
+git clone https://github.com/mileszs/ack.vim.git ~/.vim/bundle/ack.vim
 git clone https://github.com/vim-scripts/AutoClose.git
 git clone https://github.com/ctrlpvim/ctrlp.vim.git
 git clone https://github.com/Shougo/neocomplete.vim.git
@@ -69,11 +79,9 @@ git clone https://github.com/scrooloose/nerdtree.git
 git clone https://github.com/scrooloose/syntastic.git
 git clone https://github.com/majutsushi/tagbar.git
 git clone https://github.com/vim-airline/vim-airline.git
-git clone https://github.com/easymotion/vim-easymotion.git
 git clone https://github.com/xolox/vim-easytags.git
 git clone https://github.com/tpope/vim-fugitive.git
 git clone https://github.com/fatih/vim-go.git
-git clone https://github.com/mxw/vim-jsx.git
 git clone https://github.com/xolox/vim-misc.git
 git clone https://github.com/tpope/vim-sensible.git
 endfunction
