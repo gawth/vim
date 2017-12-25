@@ -6,6 +6,9 @@ execute pathogen#infect()
 
 let NERDTreeQuitOnOpen=1
 
+set tabstop=4
+set shiftwidth=4
+
 " Arrow Key Fix 
 " https://github.com/spf13/spf13-vim/issues/780
 if &term[:4] == "xterm" || &term[:5] == 'screen' || &term[:3] == 'rxvt'
@@ -59,6 +62,7 @@ filetype plugin indent on    " required
 " List of bundles - by putting these in a func they dont get executed 
 " dont call the function though :-)
 function! _blockcomment()
+git clone https://github.com/christoomey/vim-tmux-navigator.git
 git clone https://github.com/vim-scripts/AutoClose.git
 git clone https://github.com/ctrlpvim/ctrlp.vim.git
 git clone https://github.com/Shougo/neocomplete.vim.git
