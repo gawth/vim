@@ -39,6 +39,8 @@ inoremap <expr> <TAB>   pumvisible() ? "\<C-y>" : "\<TAB>"
 "Point to user defined snippets.  Use comma separated for multiple folders
 let g:neosnippet#snippets_directory='~/.vim/snippets'
 
+" Golang settings
+let g:go_fmt_command = "goimports"
 
 "Syntasic Recommended settings
 set statusline+=%#warningmsg#
@@ -61,7 +63,9 @@ filetype plugin indent on    " required
 
 "
 " fzf setup
-set rtp+=~/.fzf
+" Set diff path on mac as I have used homebrew to install
+"set rtp+=~/.fzf
+set rtp+=/usr/local/opt/fzf
 nmap ; :Buffers<CR>
 nmap <Leader>; :Files<CR>
 nmap <Leader>t :Tags<CR>
