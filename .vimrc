@@ -8,6 +8,9 @@ execute pathogen#infect()
 
 "let NERDTreeQuitOnOpen=1
 
+set tabstop=4
+set shiftwidth=4
+
 " Arrow Key Fix 
 " https://github.com/spf13/spf13-vim/issues/780
 if &term[:4] == "xterm" || &term[:5] == 'screen' || &term[:3] == 'rxvt'
@@ -129,6 +132,8 @@ nnoremap <C-H> <C-W><C-H>
 "Point to user defined snippets.  Use comma separated for multiple folders
 "let g:neosnippet#snippets_directory='~/.vim/snippets'
 
+" Golang settings
+let g:go_fmt_command = "goimports"
 
 "Syntasic Recommended settings
 set statusline+=%#warningmsg#
@@ -258,6 +263,7 @@ call airline#add_inactive_statusline_func('Render_Only_File')
 " https://github.com/junegunn/fzf
 "
 set rtp+=~/.fzf
+set rtp+=/usr/local/opt/fzf
 
 nmap ; :Buffers<CR>
 nmap <Leader>; :Files<CR>
@@ -274,46 +280,3 @@ nmap <Leader>a :Ack! "\b<cword>\b" <CR>
 let g:tsuquyomi_disable_quickfix = 1
 let g:syntastic_typescript_checkers = ['tsuquyomi'] " You shouldn't use 'tsc' checker."
 
-" List of bundles - by putting these in a func they dont get executed 
-" dont call the function though :-)
-function! _blockcomment()
-" Better TS support?
-git clone https://github.com/Quramy/tsuquyomi.git ~/.vim/bundle/tsuquyomi
-" ack uses ag (silver surfer) which is a replacement for grep.
-git clone https://github.com/mileszs/ack.vim.git ~/.vim/bundle/ack.vim
-" This is a replacement for previous autoclose which drove me round the bend.
-" Although sure if it works (ah, yes it does - and its better ) so far...
-git clone https://github.com/jiangmiao/auto-pairs
-" Can be used for fancy file nav...but not sure i do use it...
-"git clone https://github.com/ctrlpvim/ctrlp.vim.git
-" Auto complete, snippets, etc.  
-git clone https://github.com/Shougo/neocomplete.vim.git
-git clone https://github.com/Shougo/neosnippet.git
-git clone https://github.com/Shougo/neosnippet-snippets.git
-" Got rid of this - allows commenting out of code, etc which 
-" might be ace but I never use it...
-" git clone https://github.com/scrooloose/nerdcommenter.git
-git clone https://github.com/scrooloose/nerdtree.git
-git clone https://github.com/scrooloose/syntastic.git
-git clone https://github.com/majutsushi/tagbar.git
-" Status line for vim...
-git clone https://github.com/vim-airline/vim-airline.git
-" Supposed to allow use of \\ to then trigger advanced nav.  For example \\w
-" would highlight all the word boundaries
-" git clone https://github.com/easymotion/vim-easymotion.git
-git clone https://github.com/tpope/vim-fugitive.git
-git clone https://github.com/fatih/vim-go.git
-git clone https://github.com/mxw/vim-jsx.git
-" Sorts out tags
-git clone https://github.com/xolox/vim-easytags.git
-" Misc libs used by easy tags
-git clone https://github.com/xolox/vim-misc.git
-git clone https://github.com/tpope/vim-sensible.git
-" Allows kicking off off a build 
-git clone https://github.com/tpope/vim-dispatch.git 
-" Supposed to allow nav between vim and tmux...doesnt quite work :-(
-git clone https://github.com/christoomey/vim-tmux-navigator.git 
-" Nice little lib that splits/joins golang structs (works for other langs but
-" not tried it yet) uses gS for split and gJ for join
-git clone https://github.com/AndrewRadev/splitjoin.vim
-endfunction
