@@ -258,9 +258,11 @@ call airline#add_inactive_statusline_func('Render_Only_File')
 "let g:ctrlp_show_hidden = 1
 
 
-" New Completion lib...
+" New Completion lib...install both of these for it to work
+" Also need the silver searcher to get ag command
 "
 " https://github.com/junegunn/fzf
+" https://github.com/junegunn/fzf.vim
 "
 set rtp+=~/.fzf
 set rtp+=/usr/local/opt/fzf
@@ -272,7 +274,8 @@ nmap <Leader>r :Tags<CR>
 " Changes to allow use of ag (replacement for grep) with ack in vim
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
-nmap <Leader>a :Ack! "\b<cword>\b" <CR>
+" Clashes with autoclose mapping
+" nmap <Leader>a :Ack! "\b<cword>\b" <CR>
 
 " Typescript support.  Was getting lots of issues due to tsc not picking up
 " tsconfig.json so have tried alternative 
@@ -280,3 +283,11 @@ nmap <Leader>a :Ack! "\b<cword>\b" <CR>
 let g:tsuquyomi_disable_quickfix = 1
 let g:syntastic_typescript_checkers = ['tsuquyomi'] " You shouldn't use 'tsc' checker."
 
+
+" let g:tmux_navigator_no_mappings = 1
+
+" noremap <silent> {Left-Mapping} :TmuxNavigateLeft<cr>
+" noremap <silent> {Down-Mapping} :TmuxNavigateDown<cr>
+" noremap <silent> {Up-Mapping} :TmuxNavigateUp<cr>
+" noremap <silent> {Right-Mapping} :TmuxNavigateRight<cr>
+" noremap <silent> {Previous-Mapping} :TmuxNavigatePrevious<cr>
