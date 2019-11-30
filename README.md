@@ -2,7 +2,7 @@
 ## vimrc settings
 
 Clone this repo then link to it, e.g. if you have cloned in to vim...
-`ln -s vim\.vimrc .vimrc`
+`ln -s vim/.vimrc .vimrc`
 
 This uses https://github.com/tpope/vim-pathogen for loading of plugins
 
@@ -13,7 +13,8 @@ mkdir -p ~/.vim/autoload ~/.vim/bundle && \
 curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 ```
 
-Then, in the bundle dir use the curl commands at the end of the .vimrc to download the various libs
+Then, in the bundle dir use the commands below to download the various modules - I just copy/paste
+in to a command window.
 
 ```
 git clone https://github.com/vim-scripts/AutoClose.git
@@ -34,3 +35,8 @@ git clone https://github.com/mxw/vim-jsx.git
 git clone https://github.com/xolox/vim-misc.git
 git clone https://github.com/tpope/vim-sensible.git
 ```
+
+Before running vim makes sure ctags is installed, on the Mac usually as simple as `brew install
+ctags` otherwise off to http://ctags.sourceforge.net/
+
+
