@@ -34,6 +34,7 @@ git clone https://github.com/fatih/vim-go.git
 git clone https://github.com/mxw/vim-jsx.git
 git clone https://github.com/xolox/vim-misc.git
 git clone https://github.com/tpope/vim-sensible.git
+git clone https://github.com/christoomey/vim-tmux-navigator.git
 ```
 
 Before running vim makes sure ctags is installed, on the Mac usually as simple as `brew install
