@@ -30,12 +30,21 @@ set showcmd
 set textwidth=100
 set colorcolumn=+1
 set nowrap
+
+
 " And set this to a gentler colour in the terminal (default is red)
 highlight ColorColumn ctermbg=6
 
-au BufRead,BufNewFile *.md setlocal textwidth=100
+" Switch this off for markdown files as I find it a pain
+au BufRead,BufNewFile *.md setlocal textwidth=0
+" But we still want md files to wrap but without a hard line break
 au BufRead,BufNewFile *.md setlocal wrap
-au BufRead,BufNewFile *.md setlocal colorcolumn=0
+" this is the magic setting - linebreak causes the line to break without inserting an EOL
+au BufRead,BufNewFile *.md setlocal linebreak
+au BufRead,BufNewFile *.md setlocal nolist
+"au BufRead,BufNewFile *.md setlocal textwidth=100
+"au BufRead,BufNewFile *.md setlocal wrap
+"au BufRead,BufNewFile *.md setlocal colorcolumn=0
 
 " Needed for JSX in JS files 
 let g:syntastic_javascript_checkers = ['eslint']
