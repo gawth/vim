@@ -2,11 +2,10 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 colorscheme desert
 "error set fillchars+=vert:\ 
+"
 
 " Using pathogen...
 execute pathogen#infect()
-
-"let NERDTreeQuitOnOpen=1
 
 let mapleader = ","
 
@@ -48,18 +47,10 @@ au BufRead,BufNewFile *.md setlocal nolist
 
 " Needed for JSX in JS files 
 let g:syntastic_javascript_checkers = ['eslint']
-
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
 autocmd FileType vue setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
-
-"Switch on neocomplete
-let g:acp_enableAtStartup = 0
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#enable_auto_delimiter = 1
-let g:neocomplete#max_list = 15
 
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
@@ -76,19 +67,8 @@ endfunction
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 " Close popup by <Space>.
 "inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
-
-" AutoComplPop like behavior.
-"let g:neocomplete#enable_auto_select = 1
-
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplete#enable_auto_select = 1
-"let g:neocomplete#disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -96,11 +76,6 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
 
 " Plugin key-mappings.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
@@ -313,11 +288,6 @@ let g:syntastic_auto_loc_list = 1
 
 let g:elm_syntastic_show_warnings = 1
 
-call neocomplete#util#set_default_dictionary(
-  \ 'g:neocomplete#sources#omni#input_patterns',
-  \ 'elm',
-  \ '\.')
-
 " Changes to allow use of ag (replacement for grep) with ack in vim
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
@@ -331,10 +301,8 @@ let g:tsuquyomi_disable_quickfix = 1
 let g:syntastic_typescript_checkers = ['tsuquyomi'] " You shouldn't use 'tsc' checker."
 
 
-" let g:tmux_navigator_no_mappings = 1
+" Rust fmt on exit
+let g:rustfmt_autosave = 1
 
-" noremap <silent> {Left-Mapping} :TmuxNavigateLeft<cr>
-" noremap <silent> {Down-Mapping} :TmuxNavigateDown<cr>
-" noremap <silent> {Up-Mapping} :TmuxNavigateUp<cr>
-" noremap <silent> {Right-Mapping} :TmuxNavigateRight<cr>
-" noremap <silent> {Previous-Mapping} :TmuxNavigatePrevious<cr>
+"let g:deoplete#enable_at_startup = 1
+
