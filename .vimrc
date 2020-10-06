@@ -111,39 +111,7 @@ nnoremap <C-H> <C-W><C-H>
 " This causes go to auto save if we invoke a make command...such as go build
 set autowrite
 
-" Golang settings
-let g:go_fmt_command = "goimports"
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_generate_tags = 1
-let g:go_metalinter_enabled = ['golint', 'vet', 'errcheck']
-let g:go_metalinter_autosave = 0 "Just hung so have disablled :-(
-let g:go_metalinter_deadline = "5s"
-let g:go_def_mode = 'godef'
-"let g:go_auto_type_info = 1
-"set updatetime=100
-let g:go_auto_sameids = 1
-
-
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 
-
-autocmd FileType go nmap <leader>r  <Plug>(go-run)
-autocmd FileType go nmap <leader>t  <Plug>(go-test)
-" run :GoBuild or :GoTestCompile based on the go file
-function! s:build_go_files()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#test#Test(0, 1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
-  endif
-endfunction
-
-autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 
 
 "Syntasic Recommended settings
@@ -176,23 +144,26 @@ autocmd FileType typescript setlocal expandtab
 " Using goimports will format the code and sort out imports on save.  Can be
 " slow on large code files
 let g:go_fmt_command = "goimports"
-"let g:go_highlight_build_constraints = 1
-"let g:go_highlight_extra_types = 1
-"let g:go_highlight_fields = 1
-"let g:go_highlight_functions = 1
-"let g:go_highlight_methods = 1
-"let g:go_highlight_operators = 1
-"let g:go_highlight_structs = 1
-"let g:go_highlight_types = 1
-"let g:go_highlight_format_strings = 1
-"let g:go_highlight_variable_declarations = 1
-"let g:go_highlight_variable_assignments = 0
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
+let g:go_highlight_format_strings = 1
+let g:go_highlight_variable_declarations = 1
+let g:go_highlight_variable_assignments = 0
 " Show type of current var in command line
-"let g:go_auto_type_info = 1
+let g:go_auto_type_info = 1
 
 " Run linter, vet, etc on save
 let g:go_metalinter_autosave = 1
-let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+let g:go_metalinter_command = 'gopls'
+let g:go_gopls_staticcheck = 1
+
+"let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
 "
 " neosnippet support for go?
 let g:go_snippet_engine = "neosnippet"
@@ -203,13 +174,17 @@ let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go']  }
 
 " This setting highlights use of the var under the cursor.  I thought it was 
 " to blame for occassionally leaving visual junk behind so I turned it off...
-" but that didn't fix it so its back on!
-"let g:go_auto_sameids = 1
+" but that didn't fix it - but decided to leave it off as it bugs me
+let g:go_auto_sameids = 0
 "let g:go_updatetime = 750
 
 " Try using godef instead of guru
 "let g:go_def_mode = 'godef'
 "let g:go_info_mode = 'gocode'
+
+" Taken from vim go tutorial - use ctrl-n to move through errors
+map <C-n> :cnext<CR>
+map <C-m> :cprevious<CR>
 
 
 " The are a couple of types of windows that get opened by go.  This forces go
@@ -218,7 +193,7 @@ let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go']  }
 "
 " They have changed this for the latest release (Oct 4th) so am disabling for
 " now
-" let g:go_list_type = "quickfix"
+let g:go_list_type = "quickfix"
 
 " Key mappings for go
 autocmd FileType go nmap <leader>r  <Plug>(go-run)
@@ -300,6 +275,9 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 let g:tsuquyomi_disable_quickfix = 1
 let g:syntastic_typescript_checkers = ['tsuquyomi'] " You shouldn't use 'tsc' checker."
 
+let g:pymode_python = 'python3'
+
+let g:rustfmt_autosave = 1
 
 " Rust fmt on exit
 let g:rustfmt_autosave = 1
