@@ -19,7 +19,6 @@ in to a command window.
 ```
 git clone git://github.com/jiangmiao/auto-pairs.git ~/.vim/bundle/auto-pairs
 git clone https://github.com/ctrlpvim/ctrlp.vim.git
-git clone https://github.com/Shougo/neocomplete.vim.git
 git clone https://github.com/Shougo/neosnippet.git
 git clone https://github.com/Shougo/neosnippet-snippets.git
 git clone https://github.com/scrooloose/nerdcommenter.git
@@ -35,6 +34,9 @@ git clone https://github.com/mxw/vim-jsx.git
 git clone https://github.com/xolox/vim-misc.git
 git clone https://github.com/tpope/vim-sensible.git
 git clone https://github.com/christoomey/vim-tmux-navigator.git
+git clone https://github.com/junegunn/fzf.git
+git clone https://github.com/junegunn/fzf.vim.git
+git clone https://github.com/maralla/completor.vim.git
 ```
 
 Before running vim makes sure ctags is installed, on the Mac usually as simple as `brew install

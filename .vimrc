@@ -52,30 +52,29 @@ let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
 autocmd FileType vue setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
 
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-xmap <C-k> <Plug>(neosnippet_expand_target)
-inoremap <CR> <CR>
-inoremap <expr> <Esc>   pumvisible() ? "\<C-y>\<Esc>" : "\<Esc>"
-"inoremap <expr> <CR>    pumvisible() ? "\<C-y>" : "\<CR>"
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? "\<C-y>" : "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+" Completion node - neocomplete using https://gist.github.com/cridenour/74e7635275331d5afa6b as a guide
 
-" Enable omni completion.
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+  
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Add this for go
+autocmd FileType go setlocal omnifunc=gocomplete#Complete
 
 " Plugin key-mappings.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
@@ -212,6 +211,9 @@ endfunction
 
 autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 
+" Use new vim 8.2 popup windows for Go Doc
+let g:go_doc_popup_window = 1
+
 
 " The following will auto write the current file if you build/make it
 set autowrite
@@ -282,5 +284,13 @@ let g:rustfmt_autosave = 1
 " Rust fmt on exit
 let g:rustfmt_autosave = 1
 
-"let g:deoplete#enable_at_startup = 1
 
+"  Setting up go 2021
+"  https://medium.com/pragmatic-programmers/configuring-vim-to-develop-go-programs-e839641da4ac
+"
+"  https://github.com/maralla/completor.vim.git
+" Enable lsp for go by using gopls
+let g:completor_filetype_map = {}
+let g:completor_filetype_map.go = {'ft': 'lsp', 'cmd': 'gopls -remote=auto'}"
+"
+" "
