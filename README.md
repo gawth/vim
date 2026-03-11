@@ -3,11 +3,12 @@
 
 
 Core components:
-	•	vim-plug — plugin manager
-	•	fzf + fzf.vim — file/buffer/text search
-	•	ALE — linting, formatting, and LSP-style navigation
-	•	vim-fugitive / vim-surround / vim-repeat / vim-commentary — editing and git tools
-	•	vim-go — Go development support (optional)
+
+- vim-plug — plugin manager
+- fzf + fzf.vim — file/buffer/text search
+- ALE — linting, formatting, and LSP-style navigation
+- vim-fugitive / vim-surround / vim-repeat / vim-commentary — editing and git tools
+- vim-go — Go development support (optional)
 
 
 ⸻
@@ -16,28 +17,30 @@ Core components:
 
 ## Create required Vim directories
 
+```
 mkdir -p ~/.vim/autoload
 mkdir -p ~/.vim/plugged
 mkdir -p ~/.vim/undo
 mkdir -p ~/.vim/backup
 mkdir -p ~/.vim/swap
-
+```
 
 ⸻
 
 ## Install vim-plug
 
+```
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
+```
 
 ⸻
 
 ## Install base dependencies
 
-
+```
 brew install vim git fzf ripgrep
-
+```
 
 ⸻
 
@@ -47,17 +50,22 @@ These enable linting, formatting, and LSP features used by ALE.
 
 Go
 
+```
 go install golang.org/x/tools/gopls@latest
 go install golang.org/x/tools/cmd/goimports@latest
+```
 
 JavaScript / TypeScript
 
+```
 npm install -g eslint typescript typescript-language-server
+```
 
 Python
 
+```
 python3 -m pip install --user ruff pyright
-
+```
 
 ⸻
 
@@ -65,7 +73,9 @@ python3 -m pip install --user ruff pyright
 
 Start Vim and run:
 
+```
 :PlugInstall
+```
 
 Then quit and reopen Vim.
 
@@ -75,16 +85,19 @@ Then quit and reopen Vim.
 
 Inside Vim, try:
 
+```
 :Files
 :Buffers
 :Rg test
 :ALEInfo
+```
 
 If you use Go:
 
+```
 :GoBuild
 :GoTest
-
+```
 
 ⸻
 
@@ -110,12 +123,14 @@ K	Hover / documentation
 
 Inside Vim:
 
+```
 :PlugUpdate
-
+```
 
 ⸻
 
 ## Notes
+
 - :Rg requires ripgrep (rg) to be installed.
 
 
@@ -148,10 +163,11 @@ Adds simple commands for manipulating surrounding characters like quotes, bracke
 
 Examples:
 
+```
 cs"'     change " to '
 ysiw(    surround word with ()
 ds(      delete surrounding ()
-
+```
 
 ⸻
 
@@ -170,9 +186,10 @@ Provides a simple way to comment and uncomment lines of code.
 
 Examples:
 
+```
 gcc      comment current line
 gc{motion}  comment a motion (e.g. gcip)
-
+```
 
 ⸻
 
@@ -183,11 +200,12 @@ Full Git integration inside Vim, allowing you to inspect changes, stage files, a
 
 Common commands:
 
+```
 :Git
 :Gdiffsplit
 :Gstatus
 :Gblame
-
+```
 
 ⸻
 
