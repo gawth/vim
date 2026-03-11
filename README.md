@@ -1,45 +1,119 @@
 # vim
 ## vimrc settings
 
-Clone this repo then link to it, e.g. if you have cloned in to vim...
-`ln -s vim/.vimrc .vimrc`
 
-This uses https://github.com/tpope/vim-pathogen for loading of plugins
-
-To install
-
-```
-mkdir -p ~/.vim/autoload ~/.vim/bundle && \
-curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
-```
-
-Then, in the bundle dir use the commands below to download the various modules - I just copy/paste
-in to a command window.
-
-```
-git clone git://github.com/jiangmiao/auto-pairs.git ~/.vim/bundle/auto-pairs
-git clone https://github.com/ctrlpvim/ctrlp.vim.git
-git clone https://github.com/Shougo/neosnippet.git
-git clone https://github.com/Shougo/neosnippet-snippets.git
-git clone https://github.com/scrooloose/nerdcommenter.git
-git clone https://github.com/scrooloose/nerdtree.git
-git clone https://github.com/scrooloose/syntastic.git
-git clone https://github.com/majutsushi/tagbar.git
-git clone https://github.com/vim-airline/vim-airline.git
-git clone https://github.com/easymotion/vim-easymotion.git
-git clone https://github.com/xolox/vim-easytags.git
-git clone https://github.com/tpope/vim-fugitive.git
-git clone https://github.com/fatih/vim-go.git
-git clone https://github.com/mxw/vim-jsx.git
-git clone https://github.com/xolox/vim-misc.git
-git clone https://github.com/tpope/vim-sensible.git
-git clone https://github.com/christoomey/vim-tmux-navigator.git
-git clone https://github.com/junegunn/fzf.git
-git clone https://github.com/junegunn/fzf.vim.git
-git clone https://github.com/maralla/completor.vim.git
-```
-
-Before running vim makes sure ctags is installed, on the Mac usually as simple as `brew install
-ctags` otherwise off to http://ctags.sourceforge.net/
+Core components:
+	•	vim-plug — plugin manager
+	•	fzf + fzf.vim — file/buffer/text search
+	•	ALE — linting, formatting, and LSP-style navigation
+	•	vim-fugitive / vim-surround / vim-repeat / vim-commentary — editing and git tools
+	•	vim-go — Go development support (optional)
 
 
+⸻
+
+# Installation
+
+## Create required Vim directories
+
+mkdir -p ~/.vim/autoload
+mkdir -p ~/.vim/plugged
+mkdir -p ~/.vim/undo
+mkdir -p ~/.vim/backup
+mkdir -p ~/.vim/swap
+
+
+⸻
+
+## Install vim-plug
+
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+
+⸻
+
+## Install base dependencies
+
+
+brew install vim git fzf ripgrep
+
+
+⸻
+
+## Optional language tools
+
+These enable linting, formatting, and LSP features used by ALE.
+
+Go
+
+go install golang.org/x/tools/gopls@latest
+go install golang.org/x/tools/cmd/goimports@latest
+
+JavaScript / TypeScript
+
+npm install -g eslint typescript typescript-language-server
+
+Python
+
+python3 -m pip install --user ruff pyright
+
+
+⸻
+
+## Install plugins
+
+Start Vim and run:
+
+:PlugInstall
+
+Then quit and reopen Vim.
+
+⸻
+
+## Test the setup
+
+Inside Vim, try:
+
+:Files
+:Buffers
+:Rg test
+:ALEInfo
+
+If you use Go:
+
+:GoBuild
+:GoTest
+
+
+⸻
+
+## Keybindings
+
+Leader key: ,
+
+Key	Action
+,;	Find files
+;	List buffers
+,r	Ripgrep search
+,t	Search tags
+gd	Go to definition
+gr	Find references
+K	Hover / documentation
+]q	Next quickfix item
+[q	Previous quickfix item
+
+
+⸻
+
+## Updating plugins
+
+Inside Vim:
+
+:PlugUpdate
+
+
+⸻
+
+## Notes
+- :Rg requires ripgrep (rg) to be installed.
